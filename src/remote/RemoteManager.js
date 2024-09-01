@@ -138,13 +138,6 @@ class RemoteManager extends EventEmitter {
                     if(this.error.code === "ECONNRESET"){
                         this.emit('unpaired');
                     }
-                    else if(this.error.code === "ECONNREFUSED"){
-                        // L'appareil n'est pas encore prêt : on relance
-                        await this.maybeReconnect();
-                    }
-                    else if(this.error.code === "EHOSTDOWN"){
-                        // L'appareil est down, on ne fait rien
-                    }
                     else{
                         // Dans le doute on redémarre
                         await this.maybeReconnect();
